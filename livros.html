@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listagem de Livros</title>
+</head>
+<body>
+    <h1>Listagem de Livros</h1>
+
+    <ul id="listaLivros"></ul>
+
+    <script>
+        // Recuperar a lista de livros do Local Storage
+        var livros = JSON.parse(localStorage.getItem('livros')) || [];
+
+        // Exibir os livros na lista
+        var listaLivros = document.getElementById('listaLivros');
+        livros.forEach(function(livro) {
+            var li = document.createElement('li');
+            li.textContent = livro.titulo + ' - ' + livro.autor;
+            listaLivros.appendChild(li);
+        });
+
+        // Função para cadastrar um livro
+        function cadastrarLivro() {
+            var titulo = prompt('Digite o título do livro:');
+            var autor = prompt('Digite o autor do livro:');
+
+            if (titulo && autor) {
+                // Verificar se já existe um array de livros no Local Storage
+                var livros = JSON.parse(localStorage.getItem('livros')) || [];
+
+                // Adicionar o novo livro ao array
+                livros.push({ titulo: titulo, autor: autor });
+
+                // Salvar o array atualizado de livros no Local Storage
+                localStorage.setItem('livros', JSON.stringify(livros));
+
+                alert('Livro cadastrado com sucesso!');
+                exibirListaLivros();
+            } else {
+                alert('Por favor, preencha todos os campos.');
+            }
+        }
+
+        // Função para exibir a lista de livros na página
+        function exibirListaLivros() {
+            listaLivros.innerHTML = '';
+
+            // Recuperar a lista de livros do Local Storage
+            var livros = JSON.parse(localStorage.getItem('livros')) || [];
+
+            // Exibir os livros na lista
+            livros.forEach(function(livro) {
+                var li = document.createElement('li');
+                li.textContent = livro.titulo + ' - ' + livro.autor;
+                listaLivros.appendChild(li);
+            });
+        }
+
+        // Chamar a função para exibir a lista ao carregar a página
+        exibirListaLivros();
+    </script>
+</body>
+</html>
+    </script>
+</body>
+</html>

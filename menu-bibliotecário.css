@@ -1,0 +1,82 @@
+body {
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    background-image: url(Design\ sem\ nome.png);
+    background-size: 40%;
+}
+.menu {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #097fdfcc;
+    border: 5px;
+    color: #fff;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    position: absolute;
+    width: 100%;
+    height:20%;
+    right: 1px;
+}
+
+.quadrado {
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: absolute;
+}
+
+.quadrado:hover {
+    background-color: #555;
+}
+#devolucoes{
+    left:35%;
+}
+#emprestimo{
+    left: 45%;
+}
+#livros{
+    left: 57%;
+}
+#sobre{
+    left: 65%;
+}
+#sair{
+    left: 82%;
+}
+#gerenciar{
+    left: 73%;
+}
+
+#icon{
+    position: absolute;
+    right: 90%;
+    height: 55%;
+}
+
+/* CSS da página boas vindas */
+body{
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background-size: 110%;
+}
+.structure{
+    width: 55%;
+    height: 60%;
+    left: 23%;
+    top:24%;
+    position: absolute;
+    border-radius: 20%;
+}
+
+#prefacio{
+    font-size: x-large;
+    position: absolute;
+    left: 4%;
+    top: 24%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+#logo{
+    width: 34%;
+    height: 19%;
+    position: absolute;
+    right: 100%;
+    bottom: 112%;
+}

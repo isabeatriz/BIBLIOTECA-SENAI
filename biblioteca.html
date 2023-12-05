@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+     <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <link rel="stylesheet" href="biblioteca.css">
+          <link rel="icon" href="https://th.bing.com/th/id/R.04e33237cd1126fb72a0e03acedb80fa?rik=dOuMfI7uH1UPsw&riu=http%3a%2f%2fedu.szf.at%2fimages%2fedu4me.png&ehk=rUkmZNqWfePUDO1MfO%2bPEpzOb4ky6xB5jQnhtGNaSTo%3d&risl=&pid=ImgRaw&r=0">
+          <title>Login</title>
+          <script src="biblioteca.js"></script>
+
+     </head>
+     <body>
+          <main>
+               <div class="main-container">
+                    <div class="left-content">
+                           <h1> SEJAM BEM-VINDO!<p>A BIBLIOTECA <SENAI-SP></SENAI-SP></p></h1>
+                         <figure class="biblioteca-img">
+                              <img id="logo" src="senai-logo-1.png" alt=" Biblioteca Login">
+                         </figure>
+                    </div>
+                    <div class="right-content">
+                         <div class="card card-color">
+                              <div class="title">
+                                   <h2>Login</h2>
+                              </div>
+                              <form method="post">
+                                   <div class="input-container">
+                                        <div class="input-group">
+                                             <label for="user">E-mail/CPF</label>
+                                             <input type="text" name="username" id="user" placeholder="Digite seu usuário" required>
+                                        </div>
+                                        <div class="input-group">
+                                             <label for="pass">Senha</label>
+                                             <input type="password" name="password" id="pass" placeholder="Digite sua senha" required>
+                                             
+                                        </div>
+                                   </div>
+                                   <div class="form-links">
+                                        <a href="#">Esqueceu sua senha?</a>
+                                   </div>
+                                   <div class="submit-btn-form">
+                                        <button onclick="login()">Entrar</button>
+                                   </div>
+                                   
+                              </form>
+                              </div>
+                         </div>
+
+                    </div>
+               </div>
+          </main>
+     </body>
+</html>

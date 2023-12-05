@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso ao bibliotecário</title>
+    <link rel="stylesheet" href="menu-bibliotecário.css">
+
+</head>
+<body>
+    
+    <div class="fundo"></div>
+
+    <div class="menu">
+        <div onclick="devolucoes()" id="devolucoes" class="quadrado">Devoluções</div>
+        <div onclick="gerenciador()" id="gerenciar" class="quadrado">Gerenciar</div>
+        <div onclick="emprestimo()" id="emprestimo" class="quadrado">Empréstimos</div>
+        <div onclick="livros()" id="livros" class="quadrado">Livros</div>
+        <div onclick="sobre()" id="sobre" class="quadrado">Sobre</div>
+        <div onclick="menu()" id="sair" class="quadrado">Sair</div>
+      </div>
+    
+      <div class="structure">
+          <img id="logo" src="senai-logo.png">
+          
+          <p id="prefacio">Nossa biblioteca virtual oferece uma rica seleção de livros para estudantes,<br> 
+              professores e entusiastas da leitura.Aqui você pode explorar diversos gêneros, autores<br>
+              renomados e obras clássicas. Utilize nosso sistema de busca para encontrar o livro perfeito<br> 
+              para suas necessidades de estudo ou lazer!</p>
+              
+              
+      </div>
+      <script src="transferencia.js"></script>
+</body>
+</html>

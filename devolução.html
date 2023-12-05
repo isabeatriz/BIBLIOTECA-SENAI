@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devolução de Livros</title>
+    <link rel="stylesheet" href="devolução.css">
+</head>
+<body>
+    <div class="container">
+        <button id="back" onclick="back()">Voltar</button>
+        <h1>Devolução de Livros</h1>
+
+        <div class="form">
+            <label for="livroDevolucao">Livros para Devolução:</label>
+            <select id="livroDevolucao">
+                <option value="opcoes">Escolha um livro para devolução:</option>
+                
+            </select>
+
+            <button id="devolve" onclick="devolverLivro()">Devolução</button>
+        </div>
+    </div>
+
+    <script>
+       function back(){
+        window.location.href="menu-bibliotecario.html"
+       }
+       function loadLivrosDevolucao() {
+    const livrosEmprestados = JSON.parse(localStorage.getItem('livros')) || [];
+    const selectLivroDevolucao = document.getElementById('livroDevolucao');
+
+    while (selectLivroDevolucao.options.length > 1) {
+        selectLivroDevolucao.remove(1);
+    }
+
+    livrosEmprestados.forEach(function (livroEmprestado) {
+        const optionDevolucao = document.createElement('option');
+        optionDevolucao.value = livroEmprestado.titulo;
+        optionDevolucao.textContent = livroEmprestado.titulo;
+        selectLivroDevolucao.appendChild(optionDevolucao);
+    });
+}
+
+// Chame a função de carregamento inicialmente
+loadLivrosDevolucao();
+
+        
+    </script>
+</body>
+</html>

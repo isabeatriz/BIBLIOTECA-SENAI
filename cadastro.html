@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciador de Livros</title>
+    
+    <style>
+        :root {
+    --primary-color: #4CAF50;
+    --secondary-color: #6e6565;
+    --tertiary-color: #dddedf61;
+  }
+  
+  
+body {
+ background-color: rgb(82, 165, 237);
+font-family:Georgia, 'Times New Roman', Times, serif;
+margin: 0;
+padding: 20px;
+color: black;
+}
+#back{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: rgb(82, 165, 237);
+}
+
+/* Personalizar o título do projeto */
+.title {
+    background-color: #5ec0f1;
+    color: var(black);
+    padding: 20px;
+    text-transform: uppercase;
+    font-size: 32px;
+    font-weight: normal;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin-top: 90px;
+    margin-bottom: 15px;
+    width: 30%;
+    /* posição */
+    position: relative;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Personalizar "Cadastrar Livro" (título) */
+.cadastrar {
+    background-color: #78c4ea;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    color: var(black);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+/* Alterar o bloco do menu cadatrar */
+.form-container{
+    background-color: #f1f1f1ea;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    width: 300px;
+    height: 390px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+}
+
+/*Alterar os campos de texto */
+input[type="text"],
+select {
+    text-align: center;
+    width: 70%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(#fefeff);
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+/* Alterar a caixinha da data */
+input[type="date"] {
+    text-align: center;
+    width: 50%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(#fefeff);
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+/* Alterar o botão de enviar */
+input[type="submit"] {
+    display: block;
+    width: 40%;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    background-color: (#fefeff);
+    color: var(--secondary-color);
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    margin: 0 auto;
+}
+
+/* Personalizar "Listagem de Livros" */
+.listagem {
+    background-color: #78c4ea;
+    text-align: center;
+    color: #080808;
+    font-size: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: 20%;
+    display: inline-block;
+    margin: 0 auto;
+}
+
+/* Alterar o bloco da listagem */
+.list-container{
+    position: absolute;
+    top:40%;
+    left:50%;
+    background-color:   #fffdfde6;
+    padding: 20px;
+    border-radius: 5px;
+    margin-left: 50px;
+    margin-right: 50px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    flex-basis: auto;
+    align-items: left;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+}
+
+/* Personalizar caixinha de "Ordenar por" */
+#sort-by {
+    width: 20%;
+    margin-left: 10px;
+}
+
+table,
+th,
+td {
+    border: 1px solid #049fe19c;
+    padding: 10px;
+}
+
+/* alterar texto da exibição na listagem dos livro */
+table {
+    background-color: #fffdfc;
+    width: 100%;
+    border-collapse: collapse;
+    color: #000000;
+    text-align: center;
+}
+  
+/* alterar a barra de exibição dos livros (th)*/
+th {
+    background-color: #78c4ea;
+    color: #070707b6;
+    font-weight: bold;
+}
+  
+tr:nth-child(even) {
+    background-color: #088aedaf;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.edit-button,
+.delete-button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+  
+.delete-button {
+    background-color: #e52214;
+}
+
+#null{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    background-color: #fefeff;
+    border: 3px solid #f30909;
+    border-radius: 5px;
+    padding: 12px;
+    overflow: auto;
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 90px;
+}
+    </style>
+</head>
+<body>
+    <button id="back" onclick="voltar()">Voltar</button>
+
+    <div>
+        <h1 class="title"><strong>Gerenciador de Livros</strong></h1>
+    </div>
+
+    <div class="container">
+        <div class="form-container">
+            <form id="book-form">
+                <h2 class="cadastrar">Cadastrar Livro</h2>
+                <label for="title">Título:</label>
+                <input type="text" id="title" placeholder="Insira o título" required><br><br>
+
+                <label for="author">Autor:</label>
+                <input type="text" id="author" placeholder="Insira o autor" required><br><br>
+                
+               
+
+                <label for="publication-date">Data de Publicação:</label>
+                <input type="date" id="publication-date" required><br><br>
+
+                <input type="button" value="Cadastrar Livro" onclick="cadastrarLivro()">
+            </form>
+        </div>
+
+        <div class="list-container">
+            <h2 class="listagem">Listagem de Livros</h2>
+            <p class="order">Ordenar por:
+                <select id="sort-by">
+                    <option value="title">Título</option>
+                    <option value="publication-date">Data de Publicação</option>
+                </select>
+            </p>
+
+            <div id="book-list-container">
+                <table id="book-list">
+                    <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th>Autor</th>
+                            <th>Data de Publicação</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="book-list-body"></tbody>
+                </table>
+                <p id="null">Não há livros na biblioteca...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function voltar(){
+            window.location.href="menu-bibliotecario.html"
+        }
+        // Função para exibir a lista de livros na página
+        
+        function exibirListaLivros() {
+            var bookListContainer = document.getElementById('book-list-body');
+            bookListContainer.innerHTML = '';
+
+            var livros = JSON.parse(localStorage.getItem('livros')) || [];
+
+            livros.forEach(function (livro, index) {
+                var row = bookListContainer.insertRow();
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+                var cell4 = row.insertCell(3);
+
+                cell1.textContent = livro.titulo;
+                cell2.textContent = livro.autor;
+                cell3.textContent = livro.publicationDate; // Adicione a data de publicação aqui
+                cell4.innerHTML = '<button onclick="excluirLivro(' + index + ')">Excluir</button>';
+            });
+
+            var nullMessage = document.getElementById('null');
+            nullMessage.style.display = livros.length === 0 ? 'block' : 'none';
+        }
+
+        // Chamar a função para exibir a lista ao carregar a página
+        exibirListaLivros();
+
+        function cadastrarLivro() {
+            var titulo = document.getElementById('title').value;
+            var autor = document.getElementById('author').value;
+            var publicationDate = document.getElementById('publication-date').value;
+
+            if (titulo && autor && publicationDate) {
+                var livros = JSON.parse(localStorage.getItem('livros')) || [];
+                livros.push({ titulo: titulo, autor: autor, publicationDate: publicationDate });
+                localStorage.setItem('livros', JSON.stringify(livros));
+
+                alert('Livro cadastrado com sucesso!');
+                exibirListaLivros();
+            } else {
+                alert('Por favor, preencha todos os campos.');
+            }
+        }
+
+        function back() {
+            // Implemente a lógica para voltar à página anterior, se necessário
+            alert('Função de voltar não implementada ainda.');
+        }
+
+        function excluirLivro(index) {
+            var livros = JSON.parse(localStorage.getItem('livros')) || [];
+            livros.splice(index, 1);
+            localStorage.setItem('livros', JSON.stringify(livros));
+
+            alert('Livro excluído com sucesso!');
+            exibirListaLivros();
+        }
+
+        
+    </script>
+</body>
+</html>

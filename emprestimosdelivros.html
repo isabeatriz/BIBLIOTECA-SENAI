@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empréstimo de Livros</title>
+    <link rel="stylesheet" href="emprestimos.css">
+    <script src="/emprestimos.js"></script>
+</head>
+<body>
+    <div class="container">
+        <button id="back" onclick="back()">Voltar</button>
+        <h1>Empréstimo de Livros</h1>
+
+        <div class="form">
+            <label for="livro">Livros:</label>
+
+            <!-- Populando o select com os livros cadastrados -->
+            <select id="livro">
+                <option value="opcoes">Escolha uma das opções abaixo:</option>
+                <!-- Aqui serão adicionadas as opções dinamicamente -->
+            </select>
+
+            <label for="pessoa">Pessoa:</label>
+            <input type="text" id="pessoa">
+
+            <label for="curso">Curso:</label>
+            <input type="text" id="curso">
+
+            <label for="horario_retirada">Horário de Retirada:</label>
+            <input type="time" name="horario_retirada">
+
+            <label for="data_emprestimo">Data de Empréstimo:</label>
+            <input type="date" id="data_emprestimo">
+
+            <label for="data_devolucao">Data de Devolução:</label>
+            <input type="date" id="data_devolucao">
+
+            <div id="caixa-botao">
+                <button onclick="emprestarLivro()">Empréstimo</button>
+                <button onclick="excluirlivros()">Excluir</button>
+            </div>
+
+            <div class="lista-emprestimos">
+                <h2>Empréstimos Atuais</h2>
+                <ul id="lista-emprestimos"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+        function back(){
+            window.location.href="menu-bibliotecario.html";
+        }
+
+       
+        function emprestarLivro() {
+            const livroSelecionado = document.getElementById('livro').value;
+            const pessoa = document.getElementById('pessoa').value;
+            const data_emprestimo = document.getElementById('data_emprestimo').value;
+            const data_devolucao = document.getElementById('data_devolucao').value;
+
+            
+            const livros = JSON.parse(localStorage.getItem('livros')) || [];
+
+           
+            const livroCadastrado = livros.find(livro => livro.titulo === livroSelecionado);
+
+            if (livroCadastrado) {
+                
+                const listaEmprestimos = document.getElementById('lista-emprestimos');
+                const novoEmprestimo = document.createElement('li');
+
+                novoEmprestimo.innerHTML = `
+                    <strong>Livro:</strong> ${livroSelecionado}<br>
+                    <strong>Pessoa:</strong> ${pessoa}<br>
+                    <strong>Data de Empréstimo:</strong> ${data_emprestimo}<br>
+                    <strong>Data de Devolução:</strong> ${data_devolucao}
+                `;
+
+            
+                listaEmprestimos.appendChild(novoEmprestimo);
+                listaEmprestimos.scrollIntoView({ behavior: 'smooth' });
+
+                alert('Livro emprestado com sucesso!');
+            } else {
+                alert('Livro não cadastrado. Cadastre o livro antes de realizar o empréstimo.');
+            }
+        }
+
+      
+        function excluirlivros() {
+            const listaEmprestimos = document.getElementById('lista-emprestimos');
+
+            if (listaEmprestimos.children.length > 0) {
+                listaEmprestimos.removeChild(listaEmprestimos.lastChild);
+            }
+        }
+
+        loadLocalStorage();
+
+    
+        function loadLocalStorage() {
+            const livros = JSON.parse(localStorage.getItem('livros')) || [];
+            const selectLivro = document.getElementById('livro');
+
+                        while (selectLivro.options.length > 1) {
+                selectLivro.remove(1);
+            }
+
+     
+            livros.forEach(function(livro) {
+                const option = document.createElement('option');
+                option.value = livro.titulo;
+                option.textContent = livro.titulo;
+                selectLivro.appendChild(option);
+            });
+        }
+        
+        
+    </script>
+</body>
+</html>
