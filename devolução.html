@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Devolução de Livros</title>
-    <link rel="stylesheet" href="devolução.css">
+    <link rel="stylesheet" href="devolucao.css">
 </head>
 <body>
     <div class="container">
@@ -15,37 +15,88 @@
             <label for="livroDevolucao">Livros para Devolução:</label>
             <select id="livroDevolucao">
                 <option value="opcoes">Escolha um livro para devolução:</option>
-                
             </select>
 
-            <button id="devolve" onclick="devolverLivro()">Devolução</button>
+            <button onclick="devolverLivro()">Devolução</button>
         </div>
     </div>
 
     <script>
-       function back(){
-        window.location.href="menu-bibliotecario.html"
-       }
-       function loadLivrosDevolucao() {
-    const livrosEmprestados = JSON.parse(localStorage.getItem('livros')) || [];
-    const selectLivroDevolucao = document.getElementById('livroDevolucao');
+        function back() {
+            window.location.href = "menu-bibliotecario.html";
+        }
 
-    while (selectLivroDevolucao.options.length > 1) {
-        selectLivroDevolucao.remove(1);
-    }
+        function loadLivrosDevolucao() {
+            const livrosEmprestados = JSON.parse(localStorage.getItem('livros')) || [];
+            const selectLivroDevolucao = document.getElementById('livroDevolucao');
 
-    livrosEmprestados.forEach(function (livroEmprestado) {
-        const optionDevolucao = document.createElement('option');
-        optionDevolucao.value = livroEmprestado.titulo;
-        optionDevolucao.textContent = livroEmprestado.titulo;
-        selectLivroDevolucao.appendChild(optionDevolucao);
-    });
-}
+            while (selectLivroDevolucao.options.length > 1) {
+                selectLivroDevolucao.remove(1);
+            }
 
-// Chame a função de carregamento inicialmente
-loadLivrosDevolucao();
+            livrosEmprestados.forEach(function (livroEmprestado) {
+                const optionDevolucao = document.createElement('option');
+                optionDevolucao.value = livroEmprestado.titulo;
+                optionDevolucao.textContent = livroEmprestado.titulo;
+                selectLivroDevolucao.appendChild(optionDevolucao);
+            });
+        }
 
-        
+        // Chame a função de carregamento inicialmente
+        loadLivrosDevolucao();
+
+        function devolverLivro() {
+            const livroSelecionado = document.getElementById('livroDevolucao').value;
+
+            if (livroSelecionado === "opcoes") {
+                alert("Escolha um livro válido para devolução.");
+                return;
+            }
+
+            const nomeUsuario = prompt("Digite o nome do usuário:");
+
+            if (nomeUsuario !== null) {
+                const confirmacao = confirm("Tem certeza que deseja devolver o livro?");
+
+                if (confirmacao) {
+                    realizarDevolucao(livroSelecionado, nomeUsuario);
+                }
+            }
+        }
+
+        function realizarDevolucao(livroSelecionado, nomeUsuario) {
+            // Lógica de devolução aqui
+            // Isso pode envolver a remoção do livro da lista de empréstimos atuais.
+            removerLivroEmprestado(livroSelecionado);
+
+            // Exibe um alerta ou mensagem de sucesso
+            alert("Livro devolvido com sucesso! Livro: " + livroSelecionado + ", Nome: " + nomeUsuario);
+
+            // Limpa o formulário após a devolução
+            document.getElementById("livroDevolucao").value = "opcoes";
+
+            // Atualiza a lista de livros disponíveis para devolução
+            loadLivrosDevolucao();
+        }
+
+        // Função para remover o livro devolvido da lista de empréstimos atuais
+        function removerLivroEmprestado(livro) {
+            // Recupera os livros emprestados do armazenamento local
+            var livrosEmprestados = JSON.parse(localStorage.getItem('livros')) || [];
+
+            // Encontra o índice do livro na lista
+            var index = livrosEmprestados.findIndex(function (livroEmprestado) {
+                return livroEmprestado.titulo === livro;
+            });
+
+            // Remove o livro da lista se encontrado
+            if (index !== -1) {
+                livrosEmprestados.splice(index, 1);
+
+                // Atualiza os livros emprestados no armazenamento local
+                localStorage.setItem('livros', JSON.stringify(livrosEmprestados));
+            }
+        }
     </script>
 </body>
 </html>
